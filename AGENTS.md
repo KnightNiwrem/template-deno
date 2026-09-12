@@ -16,11 +16,24 @@
 - For code-quality reviews and refactoring, use the
   [code-quality skill](.agents/skills/code-quality/SKILL.md).
 
+## Completion
+
+For implementation tasks, complete the requested behavior and bring changed code to the engineering
+standards above before handing it back. Correctness, readable structure, semantically accurate
+names, and appropriate validation are completion requirements. Resolve concrete shortcomings within
+scope without waiting for another request. Stop when these requirements are met or a specific
+blocker needs user input; continue independent, authorized work when only part of the task is
+blocked.
+
+Rerun checks whose results may have changed. Broaden validation when the change's impact or a
+remaining uncertainty warrants it. Once relevant checks pass and the completion requirements are
+met, finish.
+
 ## Content placement
 
-Select content by the file's readers and purpose. Before adding prose or comments, identify who
-reads the file and what they need to understand, decide, or do. Include only information that serves
-those needs.
+Write prose and comments for the destination's readers and purpose. Include only information that
+helps them understand, decide, or act. Explain current constraints directly; omit content that
+merely recounts the change conversation or reassures its participants.
 
 - README: Help users understand the project, its current capabilities, and how to use it; help
   contributors get started. Future-facing content should be limited to concise descriptions of
@@ -35,7 +48,3 @@ those needs.
   routing guidance needed to find and invoke them.
 - PRs, commits, and decision records: Preserve relevant change context, alternatives considered, and
   decision history.
-
-Before finishing, review added prose and comments against the destination's purpose. Remove content
-that merely recounts the change conversation or reassures its participants. When past work reveals a
-current constraint, explain the constraint directly.
