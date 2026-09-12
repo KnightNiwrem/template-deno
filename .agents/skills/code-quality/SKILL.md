@@ -8,18 +8,19 @@ description: Evaluate and improve code quality using Fallow analysis and evidenc
 Use Fallow to identify improvement candidates, then establish whether each candidate warrants a
 change. A finding is a signal to investigate, not proof of a defect.
 
+For review or audit requests, report findings and recommendations. Apply changes when the request
+includes fixes, cleanup, or refactoring.
+
 ## Gather evidence
 
-Run these complementary analyses from the repository root:
+Select analyses that address the requested scope and run them from the repository root:
 
-```sh
-npx fallow dead-code
-npx fallow dupes
-npx fallow health
-```
+- `npx fallow dead-code`: investigate reachability and unused code.
+- `npx fallow dupes`: investigate duplication and consolidation candidates.
+- `npx fallow health`: investigate complexity and maintainability.
 
-For focused work, select relevant analyses. `npx fallow` runs the combined pipeline. Consult
-`npx fallow --help` or subcommand help for version-specific options; see the
+For a broad audit, `npx fallow` runs the combined pipeline. Consult `npx fallow --help` or
+subcommand help for version-specific options; see the
 [official command reference](https://github.com/fallow-rs/fallow#commands) when needed.
 
 Confirm that the analyzer covers the intended files and entry points. Check its handling of Deno
@@ -28,7 +29,8 @@ analysis configuration narrowly rather than restructuring application code to sa
 
 The auxiliary CLI requires Node.js/npm; it does not require migrating the project's tooling. Report
 unavailable tooling, failed analysis, or incomplete coverage instead of treating them as clean
-results.
+results. Continue useful manual analysis and independent work within scope, identifying conclusions
+that remain unverified.
 
 ## Separate signal from noise
 
@@ -43,15 +45,17 @@ uncertain. Support the classification with code and usage evidence:
   score is useful only when the design improves.
 
 Prioritize confirmed issues by impact and task scope. Investigate uncertain findings; leave code
-unchanged when evidence remains insufficient. Explain dismissed findings and keep any justified
-exclusions narrow. Do not weaken thresholds or rename symbols merely to silence reports.
+unchanged when evidence remains insufficient and continue with independent, supported findings.
+Explain dismissals that affect confidence in the analysis or a decision the user needs to make. Keep
+justified exclusions narrow; do not weaken thresholds or rename symbols merely to silence reports.
 
 ## Improve and validate
 
-Make the smallest supported change while preserving intended behavior and meaningful names. Review
-proposed automated fixes before applying them; never bulk-delete or refactor solely on tool output.
+When changes are requested, make the smallest supported change that meets the repository's quality
+standards while preserving intended behavior and meaningful names. Review proposed automated fixes
+before applying them; never bulk-delete or refactor solely on tool output.
 
-Rerun affected analyses and the repository's relevant formatting, lint, type, and behavior checks.
-Evaluate the actual improvement, not just disappearing findings. Report changes, triage rationale,
-validation results, and unresolved uncertainty; distinguish pre-existing issues from new
-regressions.
+After edits, rerun affected analyses and the repository's relevant formatting, lint, type, and
+behavior checks. Evaluate the actual improvement, not just disappearing findings. Report changes,
+triage rationale, validation results, and unresolved uncertainty; distinguish pre-existing issues
+from new regressions.
