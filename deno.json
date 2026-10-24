@@ -9,7 +9,7 @@
     "test": "deno test"
   },
   "imports": {
-    "fallow": "npm:fallow@3.31.0"
+    "fallow": "npm:fallow@3.35.0"
   },
   "fmt": {
     "options": {
